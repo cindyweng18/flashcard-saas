@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import {
+  Grid,
+  Card,
   Container,
   TextField,
   Button,
@@ -12,6 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  CardContent,
 } from '@mui/material'
 
 export default function Generate() {
