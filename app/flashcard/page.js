@@ -1,5 +1,6 @@
 import { useUser } from "@clerk/nextjs"
 import { Box, Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material"
+import { collection, doc, getDocs } from "firebase/firestore"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 

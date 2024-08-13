@@ -16,8 +16,12 @@ import {
   DialogActions,
   CardContent,
 } from '@mui/material'
+import { collection, doc, getDoc, writeBatch } from 'firebase/firestore'
+import db from '@/firebase'
+import { useUser } from '@clerk/nextjs'
 
 export default function Generate() {
+  const { isLoaded, isSignedIn, user } = useUser()
   const [text, setText] = useState('')
   const [flashcards, setFlashcards] = useState([])
   const [setName, setSetName] = useState('')
