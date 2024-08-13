@@ -39,7 +39,7 @@ export default function Generate() {
     try {
       const userDocRef = doc(collection(db, 'users'), user.id)
       const userDocSnap = await getDoc(userDocRef)
-  
+      
       const batch = writeBatch(db)
   
       if (userDocSnap.exists()) {
