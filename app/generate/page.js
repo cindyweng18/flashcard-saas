@@ -39,7 +39,7 @@ export default function Generate() {
     try {
       const userDocRef = doc(collection(db, 'users'), user.id)
       const userDocSnap = await getDoc(userDocRef)
-      
+
       const batch = writeBatch(db)
   
       if (userDocSnap.exists()) {
@@ -90,34 +90,6 @@ export default function Generate() {
 
   return (
     <>
-    {flashcards.length > 0 && (
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5" component="h2" gutterBottom>
-          Generated Flashcards
-        </Typography>
-        <Grid container spacing={2}>
-          {flashcards.map((flashcard, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h6">Front:</Typography>
-                  <Typography>{flashcard.front}</Typography>
-                  <Typography variant="h6" sx={{ mt: 2 }}>Back:</Typography>
-                  <Typography>{flashcard.back}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    )}
-    {flashcards.length > 0 && (
-      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-        <Button variant="contained" color="primary" onClick={handleOpenDialog}>
-          Save Flashcards
-        </Button>
-      </Box>
-    )}
     <Container maxWidth="md">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
@@ -166,6 +138,34 @@ export default function Generate() {
         </DialogActions>
       </Dialog>
     </Container>
+    {flashcards.length > 0 && (
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h5" component="h2" gutterBottom>
+          Generated Flashcards
+        </Typography>
+        <Grid container spacing={2}>
+          {flashcards.map((flashcard, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h6">Front:</Typography>
+                  <Typography>{flashcard.front}</Typography>
+                  <Typography variant="h6" sx={{ mt: 2 }}>Back:</Typography>
+                  <Typography>{flashcard.back}</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    )}
+    {flashcards.length > 0 && (
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+        <Button variant="contained" color="primary" onClick={handleOpenDialog}>
+          Save Flashcards
+        </Button>
+      </Box>
+    )}
     </>
   )
 }
