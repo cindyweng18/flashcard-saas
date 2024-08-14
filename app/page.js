@@ -1,3 +1,5 @@
+'use client'
+import getStripe from "@/utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { AppBar, Box, Button, Grid, Toolbar, Typography } from "@mui/material";
 
@@ -54,14 +56,56 @@ export default function Home() {
       <Box sx={{my: 6}}>
         <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
         <Grid container spacing={4}>
-          {/* Feature items */}
+          <Grid item  xs={12} md={4}>
+            <Typography variant="h6">Lorem ipsum</Typography>
+            <Typography>Lorem ipsum odor amet, consectetuer adipiscing elit. Habitant ipsum dictumst odio amet donec augue sagittis ridiculus.</Typography>
+          </Grid>
+          <Grid item  xs={12} md={4}>
+            <Typography variant="h6">Lorem ipsum</Typography>
+            <Typography>Lorem ipsum odor amet, consectetuer adipiscing elit. Habitant ipsum dictumst odio amet donec augue sagittis ridiculus.</Typography>
+          </Grid>
+          <Grid item  xs={12} md={4}>
+            <Typography variant="h6">Lorem ipsum</Typography>
+            <Typography>Lorem ipsum odor amet, consectetuer adipiscing elit. Habitant ipsum dictumst odio amet donec augue sagittis ridiculus.</Typography>
+          </Grid>
         </Grid>
       </Box>
 
       <Box sx={{my: 6, textAlign: 'center'}}>
         <Typography variant="h4" component="h2" gutterBottom>Pricing</Typography>
         <Grid container spacing={4} justifyContent="center">
-          {/* Pricing plans */}
+          <Grid item  xs={12} md={4}>
+            <Box sx={{
+              p: 3,
+              border: '1px solid',
+              borderColor: 'grey.300',
+              borderRadius: 2,
+            }}>
+            <Typography variant="h5" gutterBottom>Basic</Typography>
+            <Typography variant="h6" gutterBottom>$5 / month</Typography>
+            <Typography>Lorem ipsum odor amet, consectetuer adipiscing elit.</Typography>
+            <Button variant="contained" color="primary" sx={{mt: 2}}>Choose Basic</Button>
+          </Box>
+          </Grid>
+          <Grid item  xs={12} md={4}>
+          <Box sx={{
+              p: 3,
+              border: '1px solid',
+              borderColor: 'grey.300',
+              borderRadius: 2,
+            }}>
+            <Typography variant="h5" gutterBottom>Pro</Typography>
+            <Typography variant="h6" gutterBottom>$10 / month</Typography>
+            <Typography>Lorem ipsum odor amet, consectetuer adipiscing elit.</Typography>
+            <Button 
+            variant="contained" 
+            color="primary" 
+            sx={{mt: 2}}
+            onClick={handleSubmit}>
+              Choose Pro
+            </Button>
+          </Box>
+          </Grid>
         </Grid>
       </Box>
       </>
