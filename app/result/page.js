@@ -5,7 +5,7 @@ const { useRouter } = require("next/router")
 const { useState, useEffect } = require("react")
 
 const ResultPage = () => {
-    const router = useRouter()
+    // const router = useRouter()
     const searchParams = useSearchParams()
     const session_id = searchParams.get('session_id')
     const [loading, setLoading] = useState(true)
@@ -78,3 +78,5 @@ const ResultPage = () => {
         </Container>
       )
   }
+
+export default ResultPage
