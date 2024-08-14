@@ -148,10 +148,28 @@ export default function Generate() {
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card>
                 <CardContent>
-                  <Typography variant="h6">Front:</Typography>
+                  <Box sx={{
+                    
+                  }}>
+                    <div>
+                      <div>
+                        <Typography variant="h5" component="div">
+                          {flashcard.front}
+                        </Typography>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <Typography variant="h5" component="div">
+                          {flashcard.back}
+                        </Typography>
+                      </div>
+                    </div>
+                  {/* <Typography variant="h6">Front:</Typography>
                   <Typography>{flashcard.front}</Typography>
                   <Typography variant="h6" sx={{ mt: 2 }}>Back:</Typography>
-                  <Typography>{flashcard.back}</Typography>
+                  <Typography>{flashcard.back}</Typography> */}
+                  </Box>
                 </CardContent>
               </Card>
             </Grid>
