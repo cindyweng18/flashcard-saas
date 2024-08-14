@@ -1,3 +1,4 @@
+'use client'
 const { Container, CircularProgress, Typography, Box } = require("@mui/material")
 const { useSearchParams } = require("next/navigation")
 const { useRouter } = require("next/router")
