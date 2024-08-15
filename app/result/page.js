@@ -1,5 +1,8 @@
 'use client'
-const { Container, CircularProgress, Typography, Box } = require("@mui/material")
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { green, red } from '@mui/material/colors';
+const { Container, CircularProgress, Typography, Box, Button } = require("@mui/material")
 const { useSearchParams } = require("next/navigation")
 const { useRouter } = require("next/router")
 const { useState, useEffect } = require("react")
@@ -34,7 +37,7 @@ const ResultPage = () => {
 
       if (loading) {
         return (
-          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 4}}>
+          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 65}}>
             <CircularProgress />
             <Typography variant="h6" sx={{mt: 2}}>
               Loading...
@@ -44,7 +47,7 @@ const ResultPage = () => {
       }
       if (error) {
         return (
-          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 4}}>
+          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 65}}>
             <Typography variant="h6" color="error">
               {error}
             </Typography>
@@ -53,25 +56,31 @@ const ResultPage = () => {
       }
 
       return (
-        <Container maxWidth="sm" sx={{textAlign: 'center', mt: 4}}>
+        <Container maxWidth="sm" sx={{textAlign: 'center', mt: 65}}>
           {session.payment_status === 'paid' ? (
+            // Payment Successful
             <>
+            <CheckCircleOutlineIcon sx={{fontSize: 50, color: green[500]}} />
               <Typography variant="h4">Thank you for your purchase!</Typography>
               <Box sx={{mt: 2}}>
                 <Typography variant="h6">Session ID: {session_id}</Typography>
-                <Typography variant="body1">
+                <Typography variant="body1" gutterBottom>
                   We have received your payment. You will receive an email with the
                   order details shortly.
                 </Typography>
+               <Button variant="contained" href="/">Done</Button>
               </Box>
             </>
           ) : (
+            // Payment Failed
             <>
+             <ErrorOutlineIcon sx={{fontSize: 50, color:red[500]}}/>
               <Typography variant="h4">Payment failed</Typography>
               <Box sx={{mt: 2}}>
-                <Typography variant="body1">
+                <Typography variant="body1" gutterBottom>
                   Your payment was not successful. Please try again.
                 </Typography>
+                <Button variant="contained" href="/">Retry</Button>
               </Box>
             </>
           )}
