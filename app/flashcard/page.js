@@ -1,8 +1,10 @@
+'use client'
+import db from "@/firebase"
 import { useUser } from "@clerk/nextjs"
 import { Box, Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material"
 import { collection, doc, getDocs } from "firebase/firestore"
 import { useSearchParams } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Flashcard() {
     const { isLoaded, isSignedIn, user } = useUser()
@@ -24,9 +26,12 @@ export default function Flashcard() {
           if (!search || !user) return
       
           const colRef = collection(doc(collection(db, 'users'), user.id), search)
+          console.log(colRef)
           const docs = await getDocs(colRef)
+          console.log(docs)
           const flashcards = []
           docs.forEach((doc) => {
+            console.log(doc)
             flashcards.push({ id: doc.id, ...doc.data() })
           })
           setFlashcards(flashcards)
