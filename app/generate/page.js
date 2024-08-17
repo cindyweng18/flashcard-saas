@@ -22,10 +22,13 @@ import { useUser } from '@clerk/nextjs'
 
 export default function Generate() {
   const { isLoaded, isSignedIn, user } = useUser()
+  const [flipped, setFlipped] = useState([])
   const [text, setText] = useState('')
   const [flashcards, setFlashcards] = useState([])
   const [setName, setSetName] = useState('')
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [open, setOpen] = useState(false)
+  //const router = useRouter()
 
   const handleOpenDialog = () => setDialogOpen(true)
   const handleCloseDialog = () => setDialogOpen(false)
@@ -75,6 +78,7 @@ export default function Generate() {
         method: 'POST',
         body: text,
       })
+        .then()
   
       if (!response.ok) {
         throw new Error('Failed to generate flashcards')
@@ -128,6 +132,7 @@ export default function Generate() {
             fullWidth
             value={setName}
             onChange={(e) => setSetName(e.target.value)}
+            variant='outlined'
           />
         </DialogContent>
         <DialogActions>
@@ -143,14 +148,36 @@ export default function Generate() {
         <Typography variant="h5" component="h2" gutterBottom>
           Generated Flashcards
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={3}>
           {flashcards.map((flashcard, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card>
                 <CardContent>
-                  <Box sx={{
-                    
-                  }}>
+                  <Box 
+                    sx={{
+                      perspective: "1000px", ' & > div': {
+                        transition: "transfrom 0.6s",
+                        transformStyle: "preserve-3d",
+                        position: "relative",
+                        width: "100%",
+                        height: "200px",
+                        boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+                        transform: flipped[index]? 'rotateY(180deg)' : 'rotateY(0deg)'
+                      }, ' & > div >div': {
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        backfaceVisibility: "hidden",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: 2,
+                        boxSizing: "border-box",
+                      }, ' & > div > div:nth-of-type(2)':{
+                        transform: "rotateY(180deg)",
+                      }
+
+                    }}>
                     <div>
                       <div>
                         <Typography variant="h5" component="div">
@@ -178,7 +205,7 @@ export default function Generate() {
       </Box>
     )}
     {flashcards.length > 0 && (
-      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', marginBottom: "40px"}}>
         <Button variant="contained" color="primary" onClick={handleOpenDialog}>
           Save Flashcards
         </Button>
