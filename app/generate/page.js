@@ -153,69 +153,73 @@ export default function Generate() {
           <Grid container spacing={3}>
             {flashcards.map((flashcard, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card onClick={() => {
+                <Card
+                  onClick={() => {
                     const newFlipped = [...flipped];
                     newFlipped[index] = !newFlipped[index];
                     setFlipped(newFlipped);
-                  }}>
+                  }}
+                >
                   <CardContent>
-                  <Box
-  sx={{
-    perspective: "1000px",
-  }}
->
-  <Box
-    sx={{
-      width: "100%",
-      height: "200px",
-      position: "relative",
-      transformStyle: "preserve-3d",
-      transition: "transform 0.6s",
-      transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)',
-    }}
-  >
-    <Box
-      sx={{
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        backfaceVisibility: "hidden",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#aaa",
-        border: "1px solid #ccc",
-        padding: 2,
-        boxSizing: "border-box",
-      }}
-    >
-      <Typography variant="h5" component="div">
-        {flashcard.front}
-      </Typography>
-    </Box>
+                    <Box
+                      sx={{
+                        perspective: "1000px",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          width: "100%",
+                          height: "200px",
+                          position: "relative",
+                          transformStyle: "preserve-3d",
+                          transition: "transform 0.6s",
+                          transform: flipped[index]
+                            ? "rotateY(180deg)"
+                            : "rotateY(0deg)",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            width: "100%",
+                            height: "100%",
+                            backfaceVisibility: "hidden",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "#aaa",
+                            border: "1px solid #ccc",
+                            padding: 2,
+                            boxSizing: "border-box",
+                          }}
+                        >
+                          <Typography variant="h5" component="div">
+                            {flashcard.front}
+                          </Typography>
+                        </Box>
 
-    <Box
-      sx={{
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        backfaceVisibility: "hidden",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#fff",
-        border: "1px solid #ccc",
-        padding: 2,
-        boxSizing: "border-box",
-        transform: "rotateY(180deg)",
-      }}
-    >
-      <Typography variant="h5" component="div">
-        {flashcard.back}
-      </Typography>
-    </Box>
-  </Box>
-</Box>
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            width: "100%",
+                            height: "100%",
+                            backfaceVisibility: "hidden",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "#fff",
+                            border: "1px solid #ccc",
+                            padding: 2,
+                            boxSizing: "border-box",
+                            transform: "rotateY(180deg)",
+                          }}
+                        >
+                          <Typography variant="h5" component="div">
+                            {flashcard.back}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
                   </CardContent>
                 </Card>
               </Grid>
