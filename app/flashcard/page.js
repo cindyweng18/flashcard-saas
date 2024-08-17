@@ -21,7 +21,6 @@ export default function Flashcard() {
 
   const searchParams = useSearchParams();
   const search = searchParams.get("id");
-  //console.log(search)
 
   const handleCardClick = (id) => {
     setFlipped((prev) => ({
@@ -33,26 +32,16 @@ export default function Flashcard() {
   useEffect(() => {
     async function getFlashcard() {
       if (!search || !user) return;
-      console.log(db);
       const colRef = collection(db, "users", user.id, "flashcardSets");
-      console.log("this is colRef", colRef);
-
       const docs = await getDocs(colRef);
-      console.log("this is docs", docs);
-
       const flashcards = [];
 
       docs.forEach((doc) => {
-        //this isn't running
         if (doc.id === search) {
-          console.log(doc.id, search, "matches");
-          console.log("this is the data", doc.data());
           const flashcardsArray = Object.values(doc.data().flashcards || {});
           flashcards.push(...flashcardsArray);
         }
       });
-
-      console.log("this is flashcards", flashcards);
       setFlashcards(flashcards);
     }
     getFlashcard();
