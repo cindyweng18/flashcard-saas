@@ -10,14 +10,17 @@ import {
   Container,
   Grid,
   Typography,
+
 } from "@mui/material";
-import { collection, doc, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);
+
   const [flipped, setFlipped] = useState({});
   const router = useRouter();
 
@@ -48,6 +51,19 @@ export default function Flashcard() {
     }
     getFlashcard();
   }, [search, user]);
+
+
+
+// Sharing Flashcards
+  const handleShareFlashcards = () => {
+  if (!search || !user) return;
+
+  const shareableLink = `${window.location.origin}/shared?id=${search}&user=${user.id}`;
+  navigator.clipboard.writeText(shareableLink).then(() => {
+    alert("Shareable link copied to clipboard!");
+  });
+};
+
 
   // Redirect to the quiz page
   const handleTakeQuiz = (id) => {
@@ -128,10 +144,13 @@ export default function Flashcard() {
        ))}
        </Grid>
        <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
-        <Button variant="contained" onClick={handleTakeQuiz}>
+        <Button variant="contained" onClick={handleShareFlashcards}>
+          Share Flashcards
+        </Button>
+        <Button variant="contained" sx={{ ml: 2 }} onClick={() => handleTakeQuiz(search)}>
           Take a Quiz
         </Button>
       </Box>
-     </Container>
-   );
- }
+    </Container>
+  );
+}
