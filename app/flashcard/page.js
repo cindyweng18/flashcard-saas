@@ -3,6 +3,7 @@ import db from "@/firebase";
 import { useUser } from "@clerk/nextjs";
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -11,13 +12,14 @@ import {
   Typography,
 } from "@mui/material";
 import { collection, doc, getDocs } from "firebase/firestore";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
   const [flashcards, setFlashcards] = useState([]);
   const [flipped, setFlipped] = useState({});
+  const router = useRouter();
 
   const searchParams = useSearchParams();
   const search = searchParams.get("id");
@@ -46,6 +48,11 @@ export default function Flashcard() {
     }
     getFlashcard();
   }, [search, user]);
+
+  // Redirect to the quiz page
+  const handleTakeQuiz = (id) => {
+      router.push(`/quiz?id=${id}`); 
+    }
 
   return (
     <Container maxWidth="md">
@@ -118,8 +125,13 @@ export default function Flashcard() {
               </CardActionArea>
             </Card>
           </Grid>
-        ))}
-      </Grid>
-    </Container>
-  );
-}
+       ))}
+       </Grid>
+       <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
+        <Button variant="contained" onClick={handleTakeQuiz}>
+          Take a Quiz
+        </Button>
+      </Box>
+     </Container>
+   );
+ }
