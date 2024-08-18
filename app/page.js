@@ -3,10 +3,11 @@ import  getStripe from "../utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { AppBar, Box, Button, Grid, Toolbar, Typography } from "@mui/material";
 
-const handleSubmit = async () => {
+const handleSubmit = async (subscriptionType) => {
   const checkoutSession = await fetch('/api/checkout_sessions', {
     method: 'POST',
     headers: { origin: 'http://localhost:3000' },
+    body: JSON.stringify({subscriptionType})
   })
   const checkoutSessionJson = await checkoutSession.json()
 
@@ -82,9 +83,13 @@ export default function Home() {
               borderRadius: 2,
             }}>
             <Typography variant="h5" gutterBottom>Basic</Typography>
-            <Typography variant="h6" gutterBottom>$5 / month</Typography>
+            <Typography variant="h6" gutterBottom>$2 / month</Typography>
             <Typography>Lorem ipsum odor amet, consectetuer adipiscing elit.</Typography>
-            <Button variant="contained" color="primary" sx={{mt: 2}}>Choose Basic</Button>
+            <Button 
+            variant="contained" 
+            color="primary" 
+            sx={{mt: 2}}
+            onClick={() => handleSubmit('basic')}>Choose Basic</Button>
           </Box>
           </Grid>
           <Grid item  xs={12} md={4}>
@@ -95,13 +100,13 @@ export default function Home() {
               borderRadius: 2,
             }}>
             <Typography variant="h5" gutterBottom>Pro</Typography>
-            <Typography variant="h6" gutterBottom>$10 / month</Typography>
+            <Typography variant="h6" gutterBottom>$5 / month</Typography>
             <Typography>Lorem ipsum odor amet, consectetuer adipiscing elit.</Typography>
             <Button 
             variant="contained" 
             color="primary" 
             sx={{mt: 2}}
-            onClick={handleSubmit}>
+            onClick={() => handleSubmit('pro')}>
               Choose Pro
             </Button>
           </Box>

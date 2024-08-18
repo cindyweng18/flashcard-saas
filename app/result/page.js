@@ -37,7 +37,7 @@ const ResultPage = () => {
 
       if (loading) {
         return (
-          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 65}}>
+          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 40}}>
             <CircularProgress />
             <Typography variant="h6" sx={{mt: 2}}>
               Loading...
@@ -47,7 +47,7 @@ const ResultPage = () => {
       }
       if (error) {
         return (
-          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 65}}>
+          <Container maxWidth="sm" sx={{textAlign: 'center', mt: 40}}>
             <Typography variant="h6" color="error">
               {error}
             </Typography>
@@ -56,7 +56,7 @@ const ResultPage = () => {
       }
 
       return (
-        <Container maxWidth="sm" sx={{textAlign: 'center', mt: 65}}>
+        <Container maxWidth="sm" sx={{textAlign: 'center', mt:40}}>
           {session.payment_status === 'paid' ? (
             // Payment Successful
             <>

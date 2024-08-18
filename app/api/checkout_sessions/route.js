@@ -11,6 +11,18 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export async function POST(req) {
   try {
+    const { subscriptionType } = await req.json();
+    let productName, unitAmount;
+    if (subscriptionType === 'basic') {
+      productName = 'Basic Subscription';
+      unitAmount = formatAmountForStripe(2); // $2 for Basic Subscription
+    } else if (subscriptionType === 'pro') {
+      productName = 'Pro Subscription';
+      unitAmount = formatAmountForStripe(5); // $5 for Pro Subscription
+    } else {
+      throw new Error('Invalid subscription type');
+    }
+
     const params = {
         mode: 'subscription',
         payment_method_types: ['card'],
@@ -19,9 +31,9 @@ export async function POST(req) {
             price_data: {
               currency: 'usd',
               product_data: {
-                name: 'Pro subscription',
+                name: productName,
               },
-              unit_amount: formatAmountForStripe(10, 'usd'), 
+              unit_amount: unitAmount, 
               recurring: {
                 interval: 'month',
                 interval_count: 1,
