@@ -5,7 +5,7 @@ import { green, red } from '@mui/material/colors';
 const { Container, CircularProgress, Typography, Box, Button } = require("@mui/material")
 const { useSearchParams } = require("next/navigation")
 const { useRouter } = require("next/router")
-const { useState, useEffect } = require("react")
+const { useState, useEffect, Suspense } = require("react")
 
 const ResultPage = () => {
     // const router = useRouter()
@@ -56,6 +56,7 @@ const ResultPage = () => {
       }
 
       return (
+        <Suspense>
         <Container maxWidth="sm" sx={{textAlign: 'center', mt:40}}>
           {session.payment_status === 'paid' ? (
             // Payment Successful
@@ -85,6 +86,7 @@ const ResultPage = () => {
             </>
           )}
         </Container>
+        </Suspense>
       )
   }
 
