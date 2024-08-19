@@ -1,7 +1,7 @@
 'use client'
 import  getStripe from "../utils/get-stripe";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { AppBar, Box, Button, Grid, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, ButtonGroup, Grid, Toolbar, Typography } from "@mui/material";
 
 const handleSubmit = async (subscriptionType) => {
   const checkoutSession = await fetch('/api/checkout_sessions', {
@@ -34,6 +34,7 @@ export default function Home() {
           <Button color="inherit" href="/sign-up">Sign Up</Button>
         </SignedOut>
         <SignedIn>
+          <Button color="inherit" href="/flashcards">My Flashcards</Button>
           <UserButton />
         </SignedIn>
       </Toolbar>
@@ -54,7 +55,7 @@ export default function Home() {
       </Button>
       </Box>
 
-      <Box sx={{my: 6}}>
+      <Box sx={{my: 6, textAlign: 'center'}}>
         <Typography variant="h4" component="h2" gutterBottom>Features</Typography>
         <Grid container spacing={4}>
           <Grid item  xs={12} md={4}>

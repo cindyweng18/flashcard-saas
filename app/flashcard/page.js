@@ -15,7 +15,6 @@ import {
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
