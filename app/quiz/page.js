@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { collection, doc, getDocs } from "firebase/firestore";
 import db from "@/firebase";
 import { useUser } from "@clerk/nextjs";
@@ -29,7 +29,7 @@ export default function QuizPage() {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const { user } = useUser();
   const [loading, setLoading] = useState(true);
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = useSearchParams();
   const search = searchParams.get("id");
 
   useEffect(() => {
@@ -129,6 +129,8 @@ export default function QuizPage() {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
+    <>
+     <Suspense>
     <Container maxWidth="md">
       <Typography variant="h4" component="h1" gutterBottom>
         {currentQuestion.question}
@@ -159,5 +161,7 @@ export default function QuizPage() {
         </Button>
       </Box>
     </Container>
+    </Suspense>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter, useSearchParams } from "next/navigation";
 import db from "@/firebase";
@@ -81,6 +81,8 @@ export default function SharedFlashcards() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    <>
+    <Suspense>
       <Container maxWidth="md">
         <Grid container spacing={3} sx={{ mt: 4 }}>
           {flashcards.map((flashcard, index) => (
@@ -157,7 +159,7 @@ export default function SharedFlashcards() {
           Take a Quiz
         </Button>
         </Container>
-
-
+      </Suspense>
+    </>
   );
 }
