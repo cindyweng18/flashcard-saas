@@ -57,6 +57,7 @@ const ResultPage = () => {
 
       return (
         <>
+        <Suspense>
         <Container maxWidth="sm" sx={{textAlign: 'center', mt:40}}>
           {session.payment_status === 'paid' ? (
             // Payment Successful
@@ -86,6 +87,7 @@ const ResultPage = () => {
             </>
           )}
         </Container>
+        </Suspense>
         </>
       )
   }

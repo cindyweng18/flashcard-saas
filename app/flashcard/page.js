@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 export default function Flashcard() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -57,7 +57,8 @@ export default function Flashcard() {
   const handleShareFlashcards = () => {
   if (!search || !user) return;
 
-  const shareableLink = `${window.location.origin}/shared?id=${search}&user=${user.id}`;
+  // const shareableLink = `${window.location.origin}/shared?id=${search}&user=${user.id}`;
+  const shareableLink = `/shared?id=${search}&user=${user.id}`;
   navigator.clipboard.writeText(shareableLink).then(() => {
     alert("Shareable link copied to clipboard!");
   });
@@ -71,6 +72,7 @@ export default function Flashcard() {
 
   return (
     <>
+    <Suspense>
     <Container maxWidth="md">
       <Grid container spacing={3} sx={{ mt: 4 }}>
         {flashcards.map((flashcard, index) => (
@@ -152,6 +154,7 @@ export default function Flashcard() {
         </Button>
       </Box>
     </Container>
+    </Suspense>
     </>
   );
 }
