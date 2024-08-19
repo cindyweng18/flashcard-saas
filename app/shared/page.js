@@ -81,6 +81,7 @@ export default function SharedFlashcards() {
   if (loading) return <div>Loading...</div>;
 
   return (
+    <>
       <Container maxWidth="md">
         <Grid container spacing={3} sx={{ mt: 4 }}>
           {flashcards.map((flashcard, index) => (
@@ -157,7 +158,6 @@ export default function SharedFlashcards() {
           Take a Quiz
         </Button>
         </Container>
-
-
+    </>
   );
 }

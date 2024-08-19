@@ -17,6 +17,7 @@ export default function NavBar() {
   };
 
   return (
+    <>
     <div>
       <AppBar
         position="fixed"
@@ -124,5 +125,6 @@ export default function NavBar() {
         </Container>
       </AppBar>
     </div>
+    </>
   );
 }

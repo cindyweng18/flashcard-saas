@@ -32,6 +32,7 @@ export default function Flashcard() {
       }, [user])
 
       return (
+        <>
         <Container maxWidth="md">
           <Grid container spacing={3} sx={{ mt: 4 }}>
             {flashcards.map((flashcard, index) => (
@@ -49,5 +50,6 @@ export default function Flashcard() {
             ))}
           </Grid>
         </Container>
+        </>
       )
   }

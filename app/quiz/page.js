@@ -129,6 +129,7 @@ export default function QuizPage() {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
+    <>
     <Container maxWidth="md">
       <Typography variant="h4" component="h1" gutterBottom>
         {currentQuestion.question}
@@ -159,5 +160,6 @@ export default function QuizPage() {
         </Button>
       </Box>
     </Container>
+    </>
   );
 }
