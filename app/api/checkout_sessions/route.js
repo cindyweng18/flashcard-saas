@@ -15,10 +15,10 @@ export async function POST(req) {
     let productName, unitAmount;
     if (subscriptionType === 'basic') {
       productName = 'Basic Subscription';
-      unitAmount = formatAmountForStripe(0); // $2 for Basic Subscription
+      unitAmount = formatAmountForStripe(0); // $0 for Basic Subscription
     } else if (subscriptionType === 'pro') {
       productName = 'Pro Subscription';
-      unitAmount = formatAmountForStripe(5); // $5 for Pro Subscription
+      unitAmount = formatAmountForStripe(2); // $2 for Pro Subscription
     } else {
       throw new Error('Invalid subscription type');
     }
