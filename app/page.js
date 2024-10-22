@@ -219,7 +219,7 @@ export default function Home() {
                   <Typography component="h3" variant="h6">Basic Plan</Typography>
                 </Box>
                 <Box sx={{display: 'flex', alignItems: 'baseline', color: 'grey.50'}}>
-                  <Typography component="h3" variant="h2">$2</Typography>
+                  <Typography component="h3" variant="h2">$0</Typography>
                   <Typography component="h3" variant="h6">&nbsp; per month</Typography>
                 </Box>
                 <Divider sx={{my: 2, opacity: 0.2, borderColor: 'grey.500',}}/>
@@ -278,7 +278,7 @@ export default function Home() {
                   <Typography component="h3" variant="h6">Pro Plan</Typography>
                 </Box>
                 <Box sx={{display: 'flex', alignItems: 'baseline', color: 'grey.50'}}>
-                  <Typography component="h3" variant="h2">$5</Typography>
+                  <Typography component="h3" variant="h2">$2</Typography>
                   <Typography component="h3" variant="h6">&nbsp; per month</Typography>
                 </Box>
                 <Divider sx={{my: 2, opacity: 0.2, borderColor: 'grey.500',}}/>
